@@ -96,6 +96,11 @@ def generate_code_with_login():
     return render_template('generate_code_with_login.html', code=code)
 
 
+base_dir = os.path.dirname(os.path.abspath(__file__))
+db_dir = os.path.join(base_dir, "db")
+os.makedirs(db_dir, exist_ok=True)
+
+global_init(os.path.join(db_dir, "users.db"))
+
 if __name__ == "__main__":
-    global_init("db/users.db")
     app.run("127.0.0.1", 8000, debug=False)
